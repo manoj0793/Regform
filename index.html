@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <style>
+            input[type=text], [type=date], [type=tel], [type=email], select {
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+            
+            input[type=submit] {
+              width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            
+            input[type=submit]:hover {
+              background-color: #45a049;
+            }
+            
+            div {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+            }
+            </style>
+    </head>
+    <body>
+<!--function validate_form ( )
+{
+	valid = true;
+
+        if ( document.reg_form.contact_name.value == "" )
+        {
+                alert ( "Please fill in the 'Your Name' box." );
+                valid = false;
+        }
+
+        if ( ( document.contact_form.gender[0].checked == false ) && ( document.contact_form.gender[1].checked == false ) )
+        {
+                alert ( "Please choose your Gender: Male or Female" );
+                valid = false;
+        }
+
+        if ( document.contact_form.age.selectedIndex == 0 )
+        {
+                alert ( "Please select your Age." );
+                valid = false;
+        }
+
+        if ( document.contact_form.terms.checked == false )
+        {
+                alert ( "Please check the Terms & Conditions box." );
+                valid = false;
+        }
+
+
+
+        return valid;
+}-->
+<script>
+function validate_form(){
+    var firstname = document.getElementById('firstname');
+    var lastname = document.getElementById('lastname');
+    var email = document.getElementById('email');
+    if (firstname.value.length == 0) {
+        document.getElementById('head').innerText = "* All fields are mandatory *"; // This segment displays the validation rule for all fields
+        firstname.focus();
+        return false;
+        }
+    if (lastname.value.length == 0){
+        document.getElementById('head').innerText = "* All fields are mandatory *";
+        lastname.focus();
+        return false;
+}
+// Check each input in the order that it appears in the form.
+if (inputAlphabet(firstname, "* For your name please use alphabets only *")) {
+if (inputAlphabet(lastname, "* For your name please use alphabets only *")) {
+if (emailValidation(email, "* Please enter a valid email address *")) {
+if (trueSelection(state, "* Please Choose any one option")) {
+return true;
+}
+}
+}
+}
+return false;
+}
+function emailValidation(inputtext, alertMsg) {
+var emailExp = /^[w-.+]+@[a-zA-Z0-9.-]+.[a-zA-z0-9]{2,4}$/;
+if (inputtext.value.match(emailExp)) {
+return true;
+} else {
+document.getElementById('p3').innerText = alertMsg; 
+inputtext.focus();
+return false;
+}
+}
+//This segment displays the validation rule for selection field.
+function trueSelection(inputtext, alertMsg){
+if(inputtext.value == "Choose option"){
+document.getElementById('p4').innerText = alertMsg;
+inputtext.focus();
+return false;
+}else{
+return true;
+}
+}
+</script>
+        
+        <form name="reg_form" method="POST"onSubmit="return validate_form">
+            <p id = "head"></p>
+            <p>First Name: <input type="text" name="contact_name" id="fistname" placeholder="First Name"></p>
+            <p>Last Name: <input type="text" name="contact_name" id="lastname" placeholder="Last Name"></p>
+            <p>Birthday: <input type="date" name="bday"></p>
+            <p>Your Gender: <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female</p>
+              
+            <p id="p3">Email id: <input type="email" name="contact_email" id="email" placeholder="abc@gmail.com"></p>
+
+            <p>Phone Number: <input type="tel" name="contact_phone" placeholder="Number"></p>
+
+            <p id="p4">Subject:
+            <select name="Subject">
+                <option disabled="disabled" selected="selected">Choose option</option>
+                <option>Subject 1</option>
+                <option>Subject 2</option>
+                <option>Subject 3</option>
+                </select></p>
+           
+            <input type="submit" value="Submit">
+
+            
+            </form>
+            
+    </body>
+</html>
